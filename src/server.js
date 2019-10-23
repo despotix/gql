@@ -27,7 +27,7 @@ global.pg_client.connect((err) => {
         console.error('DB Connection error ->', err.stack || err );
     } else {
         app.listen(port, host, () => {
-            console.log('GraphQL API server running at localhost:', port);
+            console.log('GraphQL API server running at', host, port);
         });
     }
 });

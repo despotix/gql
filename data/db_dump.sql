@@ -5,7 +5,7 @@
 -- Dumped from database version 11.4 (Debian 11.4-1.pgdg90+1)
 -- Dumped by pg_dump version 11.5
 
--- Started on 2019-10-23 18:13:28 EEST
+-- Started on 2019-10-23 22:29:20 EEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -93,7 +93,7 @@ CREATE VIEW public.game_publisher_view WITH (security_barrier='false') AS
     publisher.siret,
     publisher.phone,
         CASE
-            WHEN ((game.release > (date_trunc('month'::text, now()) - '1 year 6 mons'::interval)) AND (game.release < (date_trunc('month'::text, now()) - '1 year'::interval))) THEN (game.price * (0.2)::double precision)
+            WHEN ((game.release > (date_trunc('day'::text, now()) - '1 year 6 mons'::interval)) AND (game.release < (date_trunc('day'::text, now()) - '1 year'::interval))) THEN (game.price * (0.2)::double precision)
             ELSE (0)::double precision
         END AS discount,
     publisher.id AS publisher_id
@@ -152,6 +152,14 @@ ALTER TABLE ONLY public.publisher ALTER COLUMN id SET DEFAULT nextval('public.pu
 
 COPY public.game (id, title, price, tags, release, publisher) FROM stdin;
 1	BioShock: The Collection	950	{"First-person shooter"}	2018-09-01	1
+47	A Way Out	1000	{Action-adventure,"EA DICE"}	2019-03-23	1
+48	Battlefield V	1000	{First-person,shooter}	2018-10-19	1
+49	Assassin's Creed III Remastered	1000	{Action-adventure,stealth}	2019-03-29	41
+50	Battleship	1000	{Strategy}	2016-08-12	41
+51	The Crew 2	1000	{Racing}	2019-01-29	41
+52	Civilization VI	1000	{4X,"turn-based strategy"}	2019-11-22	44
+53	Deadpool	1000	{Action,"beat 'em up"}	2016-11-20	45
+54	Call of Duty: Black Ops IIII	1000	{"First-person shooter",Treyarch}	2018-10-12	45
 \.
 
 
@@ -163,6 +171,9 @@ COPY public.game (id, title, price, tags, release, publisher) FROM stdin;
 
 COPY public.publisher (id, name, siret, phone) FROM stdin;
 1	Electronic Arts	\N	\N
+41	Ubisoft	1000	123
+44	2K Games	2001	\N
+45	Activision	3001	\N
 \.
 
 
@@ -172,7 +183,7 @@ COPY public.publisher (id, name, siret, phone) FROM stdin;
 -- Name: game_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.game_id_seq', 46, true);
+SELECT pg_catalog.setval('public.game_id_seq', 54, true);
 
 
 --
@@ -181,7 +192,7 @@ SELECT pg_catalog.setval('public.game_id_seq', 46, true);
 -- Name: publisher_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.publisher_id_seq', 38, true);
+SELECT pg_catalog.setval('public.publisher_id_seq', 46, true);
 
 
 --
@@ -220,7 +231,7 @@ ALTER TABLE ONLY public.game
     ADD CONSTRAINT unique_game_via_publisher UNIQUE (title, publisher);
 
 
--- Completed on 2019-10-23 18:13:32 EEST
+-- Completed on 2019-10-23 22:29:24 EEST
 
 --
 -- PostgreSQL database dump complete

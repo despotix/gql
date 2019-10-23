@@ -7,10 +7,12 @@
 ```javascript
 {
   allGames {
-    id, title,
-    price, tags,
-    publisher {
-      id
+    id
+    title
+    price
+    release
+    discount
+    publisher{
       name
     }
   }
@@ -22,14 +24,16 @@
   "data": {
     "allGames": [
       {
-        "id": 1,
-        "title": "BioShock: The Collection",
-        "price": 970,
+        "id": 48,
+        "title": "Battlefield V",
+        "price": 1000,
+        "release": "2018-10-19T00:00:00.000Z",
+        "discount": 200,
         "tags": [
-          "First-person shooter"
+          "First-person",
+          "shooter"
         ],
         "publisher": {
-          "id": 1,
           "name": "Electronic Arts"
         }
       }
