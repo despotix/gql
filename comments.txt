@@ -1,0 +1,3 @@
+The discount is implemented via adding additional field "discount". This field value equals to zero if there is not discount for game price and positive in other case. This is done to be able to display original price and a price with discount. This logic is done in PostgreSQL side in the database view.
+Also triggering old game deletion can be done as a trigger in PostgreSQL. But more often it is needed to mark old data with field like "deleted=true" instead of deleting it. The API works with the view in database - so there is no need to delete old games and to mark them with the deleted field.
+This gives an ability of data manipulation without need to change a node.js server codebase also no need to redeploy it. Also code looks more clear and lakonik.
