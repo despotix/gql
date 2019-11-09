@@ -1,4 +1,4 @@
-#[ Live demo](http://78.47.69.128:3000 " Live demo")
+#[ Live demo](http://gql.despotix.best " Live demo")
 
 # API description
 
