@@ -22,6 +22,7 @@ global.pg_client = new Client({
     password: process.env.PG_PASSWORD,
     port: process.env.PG_PORT
 });
+console.log('Connecting to', process.env.PG_DATABASE, process.env.PG_PORT);
 global.pg_client.connect((err) => {
     if (err) {
         console.error('DB Connection error ->', err.stack || err );
